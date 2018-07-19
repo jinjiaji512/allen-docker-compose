@@ -1,0 +1,10 @@
+version: '3'
+services:    
+  blogOfAllenBuild: 
+    image: node:8-alpine
+    #environment:
+      #- NODE_ENV=${NODE_ENV}
+    working_dir: /root/code
+    volumes:
+        - ./data:/root/code
+    command: "sh start.sh"
