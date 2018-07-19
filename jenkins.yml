@@ -1,6 +1,6 @@
 jenkins:
     container_name: jenkins
-    image: jenkinsci/jenkins:2.14
+    image: jenkins/jenkins:lts
     ports:
         - "8080:8080"
         - "50000:50000"
