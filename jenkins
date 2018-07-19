@@ -1,0 +1,11 @@
+jenkins:
+    container_name: jenkins
+    image: jenkinsci/jenkins:2.14
+    ports:
+        - "8080:8080"
+        - "50000:50000"
+    environment:
+        - JAVA_OPTS=-Duser.timezone=Asia/Shanghai
+    volumes:
+        - $PWD/jenkins_home:/var/jenkins_home
+    restart: always
