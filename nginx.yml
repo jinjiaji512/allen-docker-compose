@@ -10,3 +10,4 @@ services:
       - ./data/conf.d:/etc/nginx/conf.d
       - ./data/cert:/etc/nginx/cert
       - ./data/logs:/var/log/nginx
+      - /data/dockers/blogOfAllen/data:/data/blogOfAllen
