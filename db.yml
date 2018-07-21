@@ -18,4 +18,4 @@ services:
       # - REPLICATION_PASS=
       # - REPLICATION_SSLMODE=
     volumes:
-      - ./data:/var/lib/postgresql
+      - ./data/postgresql:/var/lib/postgresql
