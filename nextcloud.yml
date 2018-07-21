@@ -1,9 +1,29 @@
 version: '3'
 services:    
-  app:  
-    image: nextcloud
-    ports:
-      - 9090:80
+  nextcloud:
+    image: wonderfall/nextcloud
+    links:
+      - nextcloud-db:nextcloud-db  
+    environment:
+      - UID=1000
+      - GID=1000
+      - UPLOAD_MAX_SIZE=2G
+      - APC_SHM_SIZE=128M
+      - OPCACHE_MEM_SIZE=128
+      - CRON_PERIOD=15m
+      - TZ=Aisa/Shanghai
+      - ADMIN_USER=jinjiaji            
+      - ADMIN_PASSWORD=jinjiaji623  
+      - DOMAIN=localhost
+      - DB_TYPE=pgsql
+      - DB_NAME=nextcloud
+      - DB_USER=postgres
+      - DB_PASSWORD=jinjiaji623
+      - DB_HOST=jiaji.info:5432
     volumes:
-      - ./data:/var/www/html
-    restart: always
+      - ./data/data:/data
+      - ./data/config:/config
+      - ./data/apps:/apps2
+      - ./data/themes:/nextcloud/themes
+    ports:
+      - 127.0.0.1:9090:8888/tcp
