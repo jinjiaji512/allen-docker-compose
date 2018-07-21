@@ -1,0 +1,21 @@
+version: '3'
+services:
+  PostgreSQL:
+    restart: always
+    image: sameersbn/postgresql:10
+    ports:
+      - "5432:5432"
+    environment:
+      - DEBUG=false
+      - PG_PASSWORD=jinjiaji623
+      # - DB_USER=
+      # - DB_PASS=
+      # - DB_NAME=
+      # - DB_TEMPLATE=
+      # - DB_EXTENSION=
+      # - REPLICATION_MODE=
+      # - REPLICATION_USER=
+      # - REPLICATION_PASS=
+      # - REPLICATION_SSLMODE=
+    volumes:
+      - ./data:/var/lib/postgresql
