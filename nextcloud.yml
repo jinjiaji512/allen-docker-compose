@@ -7,4 +7,3 @@ services:
     volumes:
       - ./data:/var/www/html
     restart: alwaysls
-    
