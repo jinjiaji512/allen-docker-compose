@@ -6,4 +6,4 @@ services:
       - 8080:80
     volumes:
       - ./data:/var/www/html
-    restart: alwaysls
+    restart: always
