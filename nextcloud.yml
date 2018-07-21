@@ -3,7 +3,7 @@ services:
   app:  
     image: nextcloud
     ports:
-      - 8080:80
+      - 8090:80
     volumes:
       - ./data:/var/www/html
     restart: always
