@@ -2,8 +2,6 @@ version: '3'
 services:    
   nextcloud:
     image: wonderfall/nextcloud
-    links:
-      - nextcloud-db:nextcloud-db  
     environment:
       - UID=1000
       - GID=1000
