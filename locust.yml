@@ -1,0 +1,48 @@
+version: '2'
+services:
+  master:
+    image: registry.opensource.zalan.do/tip/docker-locust:latest
+    ports:
+      - 5557-5558:5557-5558
+      - 8089:8089
+    volumes:
+      #- ~/.aws:/root/.aws
+      - ./data/locust/script:/opt/script
+    environment:
+      - ROLE=master
+      - TARGET_HOST=$TARGET_HOST
+      - LOCUST_FILE=$LOCUST_FILE
+      - SEND_ANONYMOUS_USAGE_INFO=$SEND_ANONYMOUS_USAGE_INFO
+      - BUILD_URL=$BUILD_URL
+  slave:
+    image: registry.opensource.zalan.do/tip/docker-locust:latest
+    depends_on:
+      - master
+    network_mode: "service:master"
+    volumes:
+      #- ~/.aws:/root/.aws
+      - ./data/locust/script:/opt/script
+      - ./data/locust/credentials:/meta/credentials
+    environment:
+      - ROLE=slave
+      - MASTER_HOST=master
+      - TARGET_HOST=$TARGET_HOST
+      - LOCUST_FILE=$LOCUST_FILE
+      - SLAVE_MUL=$SLAVE_NUM
+      - OAUTH=$OAUTH
+      - URL=$URL
+      - SCOPES=$SCOPES
+  controller:
+    image: registry.opensource.zalan.do/tip/docker-locust:latest
+    container_name: docker_locusts_controller
+    depends_on:
+      - master
+    network_mode: "service:master"
+    environment:
+      - ROLE=controller
+      - MASTER_HOST=master
+      - AUTOMATIC=$AUTOMATIC
+      - TOTAL_SLAVES=$SLAVE_NUM
+      - USERS=$USERS
+      - HATCH_RATE=$HATCH_RATE
+      - DURATION=$DURATION
