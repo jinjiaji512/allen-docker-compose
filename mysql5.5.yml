@@ -1,7 +1,7 @@
 version: '3'
 services:
   mysqldb:
-    image: mysql5.5
+    image: mysql:5.5
     restart: always
     environment:
         - MYSQL_ROOT_PASSWORD=jjjjjj
